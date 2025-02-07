@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="GSM-Infinite: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?">
+  <meta property="og:title" content="GSM-\infty"/>
+  <meta property="og:description" content="GSM-\infty: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?"/> 
+  <meta property="og:url" content="https://Infini-AI-Lab.github.io/GSM_Infinite/"/>
+  <meta property="og:image" content="static/images/sirius_overview.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="GSM_Infinite">
+  <meta name="twitter:description" content="GSM-\infty: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?">
+  <meta name="twitter:image" content="static/images/sirius_overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="LLM Reasoning, Computational Graph, Reasoning Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>GSM-Infinite: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?</title>
+  <link rel="icon" type="image/x-icon" href="static/images/GSMmouse.svg">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet"> 
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    section {
+        padding: 20px;
+        font-size: 18px;
+    }
+    /* Apply grey background to every even section */
+    section:nth-of-type(even) {
+        background-color: #f0f0f0 !important; /* Light grey */
+    }
+    section:nth-of-type(odd) {
+        background-color: white !important;
+    }
+  </style>
+  <!-- <style>
+    @font-face {
+      font-family: 'SiriusFont';
+      src: url('static/Sirius.ttf') format('truetype');
+    }
+  
+    .custom-font {
+      font-family: 'SiriusFont', sans-serif !important;
+      font-size: 3.0rem;
+    }
+  </style> -->
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://Infini-AI-Lab.github.io/Sirius/">
+            <img src="static/images/siriuslogo.png" width="28" height="28">
+          </a>
+      
+          <!-- The following "burger" icon is for the navbar's mobile responsiveness -->
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="#introduction">
+              Introduction 
+            </a>
+            <a class="navbar-item" href="#problemstatement">
+              Problems 
+            </a>
+            <a class="navbar-item" href="#computationalgraphandgsminfinite">
+              GSM-\(\infty\)
+            </a>
+            <a class="navbar-item" href="#leaderboards">
+              Leaderboards 
+            </a>
+            <a class="navbar-item" href="#evaluations">
+              Evaluations 
+            </a>
+            <a class="navbar-item" href="#conclusions">
+              Conclusion
+            </a>
+            <a class="navbar-item" href="#BibTeX">
+              BibTeX
+            </a>
+          </div>
+        </div>
+      </nav>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+          // Add a click event on each of them
+          $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+            });
+          });
+        }
+      });
+      </script>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <img src="static/images/GSMmouse.svg" alt="GSM Mouse" viewBox="0 0 50 50" width="50" height="50"> 
+            <script>
+              MathJax = {
+                tex: {
+                  inlineMath: [['$', '$'], ['\\(', '\\)']]
+                }
+              };
+            </script>
+            <script type="text/javascript" async
+              src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+              <h1 class="title is-2 publication-title" style="display: inline;font-size: 2.0em; line-height: 1.0;">
+                GSM-\(\infty\): How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?
+              </h1>
+            <br><br>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="" target="_blank">Yang Zhou*</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="" target="_blank">Hongyi Liu*</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="" target="_blank">Zhuoming Chen</a><sup>1</sup>,</span> <br>
+              <span class="author-block"> 
+                <a href="" target="_blank">Yuandong Tian</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="" target="_blank">Beidi Chen</a><sup>1,2</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Carnegie Mellon University,</span>
+              <span class="author-block"><sup>2</sup>Meta AI</span>
+            </div>
+
+            <!-- Links -->
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://www.arxiv.org/abs/2409.03856" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/Infini-AI-Lab/gsm_infinite" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/spaces/BY7O0un8yig8O/leaderboard-example" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">🤗</span>
+                    <span>Leaderboards at huggingface</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="introduction">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="text-align: center;"><img src="static/images/introductin.png" style="height: 43px; display: inline; vertical-align:text-top;"/>&nbsp; Introduction</h2>
+          <div class="content has-text-justified">
+            <div class="figure">
+              <img src="static/images/miscellaneous.png" alt="Positioning of GSM-Infinite" /> 
+            </div>
+            <p>
+              Long-context large language models (LLMs) have recently shown strong performance in information retrieval and long-document QA. 
+              However, to tackle the most challenging intellectual problems, LLMs must reason effectively in long and complex contexts with high information density and close inter-statement connections (e.g., frontier mathematical research). 
+              Studying how LLMs handle increasing reasoning complexity and context length is essential, yet existing benchmarks lack a solid basis for quantitative evaluation. 
+              Inspired by the abstraction of GSM-8K problems as <span style="font-weight: bold; color: dodgerblue">computational graphs</span>—and the ability to introduce noise by <span style="font-weight: bold; color: dodgerblue">adding unnecessary nodes and edge</span>—we develop a grade-school math problem generator capable of producing arithmetic problems with infinite difficulty and context length under fine-grained control. 
+              Using our newly synthesized GSM-\(\infty\) benchmark, we comprehensively evaluate existing LLMs. The results are organized into public Leaderboards at huggingface. 
+            </p> 
+            <p>
+              Our GSM-\(\infty\) benchmark provides <span style="font-weight: bold; color: dodgerblue">a scalable and controllable</span> testbed for quantitatively evaluating and advancing LLM reasoning abilities with increasing reasoning difficulty and increasing context length. 
+              Specifically, we found these observations: 1. LLMs reasoning performance drops exponentially (sigmoid on realistic context) as reasoning complexity increases. 2. LLMs reasoning performance sharply decreases when context length increases. 3. LLMs consistently better at forward-thinking problems (constructive logic) than backward-thinking problems given the same reasoning complexity. 4. When we scale repeated sampling computation exponentially, LLM performance on GSM-\(\infty\) grows linearly. 
+            </p> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="problemstatement">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h3 class="title is-3" style="text-align: center;width: 850px;"><img src="static/images/lim.png" style="height: 50px; display: inline; vertical-align: middle;"/>&nbsp; Limitaions of Existing Benchmarks </h3> 
+          <div class="content has-text-justified">
+            <div class="figure">
+              <img src="static/images/rag.png" alt="RAG robust performance on common long-context tasks" /> 
+            </div>
+            <p>
+              Existing benchmarks are not sufficient in evaluating the value of long-context LLMs. Mainly because of the following three reasons: 
+            </p> 
+            <p>
+              1. <span style="font-weight: bold; color: dodgerblue">Lack of reasoning complexity</span>: Most tasks rely on text retrieval, text summarization, QA. 
+            </p>
+            <p>
+              2. <span style="font-weight: bold; color: dodgerblue">Lack of context length</span>: Some tasks are inherently short-context tasks but are bloated to long-context through injecting semantically irrelevant noise. 
+            </p> 
+            <p>
+              These tasks are not tasks that only long-context LLMs can do. We will show that RAG are robust and have performance on par with long-context LLMs. However, given the high efficiency to build and run inference on RAG systems, RAG is more favorable in practice on these tasks. 
+            </p>
+            <p>
+              3. <span style="font-weight: bold; color: dodgerblue">Lack of scalability</span>: Admittedly, tasks with high reasoning complexity and high information density exists, but these tasks requires huge human-effort to gather, dedup, and verify. The result is lack of scalability in quantity, making it hard to prevail in the community. 
+            </p>
+            <p>
+              <span style="font-weight: bold; color: dodgerblue">Problem Statement</span>: How can we develop a benchmark that contains sufficient problems at every fine-grained level of reasoning difficulty, from easy retrieval tasks to infinitely hard challenges, while providing infinitely customizable context length with high information density? 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="computationalgraphandgsminfinite">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="text-align: center;"><img src="static/images/rockets.png" style="height: 50px; display: inline; vertical-align: middle;"/>&nbsp; Computational Graph and GSM-\(\infty\) </h2>
+          <div class="content has-text-justified">
+            <div class="figure">
+                <img src="static/images/computationalgraph.png" alt="RAG robust performance on common long-context tasks" /> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="leaderboards">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="text-align: center;"><img src="static/images/simpleiss.png" style="height: 50px; display: inline; vertical-align: middle;"/>&nbsp; Leaderboards </h2> 
+          <div class="content has-text-justified">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="evaluations">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3"><img src="static/images/cosmonautllama.png" style="height: 50px; display: inline; vertical-align: middle;"/>&nbsp; Evaluations </h2> 
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="static/images/siriuslogo.png" 
+        alt="<i>Sirius</i>"
+        width="200"
+        height="200" 
+        style="display: block;margin: auto"/>
+    </div>
+  </section>
+
+  <section class="section hero is-light" id="conclusions">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3"><img src="static/images/cosmonautllama.png" style="height: 50px; display: inline; vertical-align: middle;"/>&nbsp; Conclusion</h2> 
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="static/images/siriuslogo.png" 
+        alt="<i>Sirius</i>"
+        width="200"
+        height="200" 
+        style="display: block;margin: auto"/>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{hippocampus2024sirius,
+  title={Sirius: Contextual Sparsity with Correction for Efficient LLMs},
+  author={Hippocampus, David S. and Zhou, Yang and Chen, Zhuoming and Xu, Zhaozhuo and Lin, Victoria and Chen, Beidi},
+  journal={arXiv preprint arXiv:2404.11912},
+  year={2024}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
