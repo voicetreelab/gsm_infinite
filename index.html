@@ -6,13 +6,13 @@
   <meta property="og:title" content="GSM-\infty"/>
   <meta property="og:description" content="GSM-\infty: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?"/> 
   <meta property="og:url" content="https://Infini-AI-Lab.github.io/GSM_Infinite/"/>
-  <meta property="og:image" content="static/images/sirius_overview.png" />
+  <meta property="og:image" content="static/images/GSMmouse.svg" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
   <meta name="twitter:title" content="GSM_Infinite">
   <meta name="twitter:description" content="GSM-\infty: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?">
-  <meta name="twitter:image" content="static/images/sirius_overview.png">
+  <meta name="twitter:image" content="static/images/GSMmouse.svg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="keywords" content="LLM Reasoning, Computational Graph, Reasoning Benchmark">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -143,8 +143,8 @@
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://Infini-AI-Lab.github.io/Sirius/">
-            <img src="static/images/siriuslogo.png" width="28" height="28">
+          <a class="navbar-item" href="https://Infini-AI-Lab.github.io/GSM_Infinite">
+            <img src="static/images/facinfinity.webp" width="28" height="28">
           </a>
       
           <!-- The following "burger" icon is for the navbar's mobile responsiveness -->
@@ -157,6 +157,9 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
+            <a class="navbar-item dashed-box" href="#leaderboards">
+              Leaderboards
+            </a>
             <a class="navbar-item" href="#introduction">
               Introduction 
             </a>
@@ -165,9 +168,6 @@
             </a>
             <a class="navbar-item" href="#computationalgraphandgsminfinite">
               GSM-\(\infty\)
-            </a>
-            <a class="navbar-item dashed-box" href="#leaderboards">
-              Leaderboards
             </a>
             <a class="navbar-item" href="#evaluations">
               Evaluations 
@@ -237,7 +237,7 @@
               <span class="author-block"> 
                 <a href="" target="_blank">Yuandong Tian</a><sup>2</sup>,</span>
               <span class="author-block">
-                <a href="" target="_blank">Beidi Chen</a><sup>1,2</sup>
+                <a href="" target="_blank">Beidi Chen</a><sup>1</sup>
               </span>
             </div>
 
@@ -278,6 +278,41 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section> 
+
+  <section class="section hero is-light" id="leaderboards" style="position: relative; padding: 20px;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="text-align: center;">
+            <img src="static/images/mousehuggingface.png" style="height: 50px; display: inline; vertical-align: middle;"/>
+            &nbsp; Leaderboards
+          </h2>
+          <div class="content has-text-justified">
+            <!-- Your additional content here --> 
+            We comprehensively evaluate 18 LLMs on GSM-\(\infty\) zero-noise benchmarks and 10 models on long-context benchmarks (and growing). 
+            Please contact us if you want to add your model to the leaderboard. (See contact us from the navigation bar). 
+            The results are organized into public Leaderboards at huggingface. 
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Iframe container with yellow dashed border and badge -->
+    <div class="is-flex is-justify-content-center is-align-items-center" style="height: 100vh; width: 100vw; max-width: 100%; vertical-align: middle;">
+      <div class="fancy-border">
+        <iframe
+          src="https://by7o0un8yig8o-leaderboard-example.hf.space"
+          frameborder="0"
+          width="1200"
+          height="800">
+        </iframe>
+        <!-- Badge that indicates the Hugging Face Space -->
+        <a href="https://by7o0un8yig8o-leaderboard-example.hf.space" target="_blank"
+          style="position: absolute; top: 10px; right: 10px; background-color: yellow; color: black; padding: 5px 10px; font-weight: bold; text-decoration: none; border-radius: 5px;">
+          huggingface
+        </a>
       </div>
     </div>
   </section> 
@@ -371,41 +406,6 @@
         </div>
       </div>
   </section> 
-
-  <section class="section hero is-light" id="leaderboards" style="position: relative; padding: 20px;">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3" style="text-align: center;">
-            <img src="static/images/mousehuggingface.png" style="height: 50px; display: inline; vertical-align: middle;"/>
-            &nbsp; Leaderboards
-          </h2>
-          <div class="content has-text-justified">
-            <!-- Your additional content here --> 
-            We comprehensively evaluate 18 LLMs on GSM-\(\infty\) zero-noise benchmarks and 10 models on long-context benchmarks (and growing). 
-            Please contact us if you want to add your model to the leaderboard. (See contact us from the navigation bar). 
-            The results are organized into public Leaderboards at huggingface. 
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Iframe container with yellow dashed border and badge -->
-    <div class="is-flex is-justify-content-center is-align-items-center" style="height: 100vh; width: 100vw; max-width: 100%; vertical-align: middle;">
-      <div class="fancy-border">
-        <iframe
-          src="https://by7o0un8yig8o-leaderboard-example.hf.space"
-          frameborder="0"
-          width="1200"
-          height="800">
-        </iframe>
-        <!-- Badge that indicates the Hugging Face Space -->
-        <a href="https://by7o0un8yig8o-leaderboard-example.hf.space" target="_blank"
-          style="position: absolute; top: 10px; right: 10px; background-color: yellow; color: black; padding: 5px 10px; font-weight: bold; text-decoration: none; border-radius: 5px;">
-          huggingface
-        </a>
-      </div>
-    </div>
-  </section>
 
   <section class="section hero is-light" id="evaluations">
     <div class="container is-max-desktop">
