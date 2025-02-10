@@ -1,5 +1,5 @@
 <div align="center">
-<h1 style="font-size: 30px;"><img src="static/images/facinfinity.webp" height="30px" align="top"/> GSM-Infinite: How Do Your LLMs Behave over Infinitly <br>Increasing Context Length and Reasoning Complexity?
+<h1 style="font-size: 30px;"><img src="static/images/facinfinity.webp" height="30px" align="top"/> GSM-Infinite: How Do Your LLMs Behave over Infinitely <br>Increasing Context Length and Reasoning Complexity?
 </h1>
 </div> 
 GSM-Infinite is a reasoning benchmarks that is completely synthetic without LLMs in the loop, capable of generating problems of context length and reasoning complexity that are infinitely scalable. Inspired by <a href="https://arxiv.org/abs/2407.20311">Physics of Language Model 2.1</a>, we use abstract grade school level math problems in to computational graph and through graph manipulation and graph-language mapping to generate LLM-readable (also, Human-readable) problems. 
@@ -101,4 +101,40 @@ Secondly, we evaluated 11 models on GSM-Infinite long-context tasks.
 We present detailed description of data generation and evaluation findings uniquely benefited from the design of GSM-Infinite. <span style="font-weight: bold; color: dodgerblue">Please make sure to checkout our paper. </span> 
 
 <h2>Overview of the Code Organization</h2> 
+From the paper, we have three subtasks in GSM-Infinite. We have Symbolic, Medium, and Hard. The classification is mainly about semantic hierarchy. More details in the paper. Below is a menu of the organization of files and folders. 
 
+- [Symbolic](#symbolic)
+  - [Data](#symbolic-data)
+  - [Predictions](#symbolic-predictions)
+- [Realistic](#realistic)
+  - [Data](#realistic-data)
+  - [Predictions](#realistic-predictions) 
+
+The main components of the code are data generation and model evaluation scripts. Since there are some subtle differences between these two. We separate them into two different folders. 
+
+<h3>Environment Installation</h3> 
+
+```
+pip install -r requirements.txt 
+``` 
+If you want to serve model locally, please install platforms of your choice (vllm, sglang, etc.). 
+
+<h3>Generation and Evaluation of Symbolic Dataset</h3> 
+For both the datasets, we have sampled dataset generated and uploaded to huggingface public datasets, which you can download and try. However, we also provide necessary code to generate the data locally. 
+
+Under `\Symbolic` subset, go in to `run.sh` and fill in necessary api credentials, model name, and dataset selection configs. You can directly run to use the existing datasets on the huggingface. 
+``` 
+bash -x run.sh 
+```
+
+<h3>Generation and Evaluation of Symbolic Dataset</h3> 
+
+Under `\realistic` subset, go to `pred` folder, and then open `evaluate_script_template.sh` to fill in the api credentials, model name, and dataset selection configs. Then, hit 
+``` 
+bash -x evaluate_script_template.sh 
+```
+
+If you want to generate the data yourself, please feel free to look into the `data` folder, and look into the `test_generate3.sh`. Then, fill in your dataset settings (ops, context length). Try hitting 
+``` 
+bash -x test_generate3.sh 
+``` 
