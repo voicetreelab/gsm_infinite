@@ -433,8 +433,12 @@
                 We found that both forward-thinking and reverse-thinking problems can both be modeled by the sigmoid functions. However, the performance of <span style="font-weight: bold; color: dodgerblue">forward-thinking problem is consistently better for most LLMs than the reverse-thinking problems. </span> 
                 Above we show five different models showing the trend. 
             </p>
+            <figure class="figure" align="left"> 
+              <img src="static/images/rag22.png" alt="RAG robust performance on common long-context tasks">
+            </figure>
             <p>
                 3. For each LLM, the reasoning performance <span style="font-weight: bold; color: dodgerblue">degrade sharply when increasing the context length (meaningful context length with close semantical connections with the core reasoning problems)</span>. On the other hand, we found that LLMs performance degradation from increasing context length with close noise differ from each other. Please check out the paper for full visualization. 
+                Different from previous long-context benchmarks, RAG methods are no longer robust on GSM-Infinite. (a) and (b) show that the retriever can clearly identify necessary contents versus noise for vt in RULER than GSM-\(\infty\). (c) and (d) show RAG methods are much less robust compared to corresponding long-context LLMs. 
             </p>
             <div class="figure" style="width:80%">
               <img src="static/images/repeatedsampling.png" alt="RAG robust performance on common long-context tasks" /> 
