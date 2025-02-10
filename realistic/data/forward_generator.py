@@ -1,9 +1,8 @@
-# the code is refactored for the long-context benchmark FACTOR (realistic) 
+# Below are the code used for generating the forward problem 
+# It contains our faithful replication of algorithms written in https://arxiv.org/abs/2407.20311 
 
 import random 
 import numpy as np 
-# from StructureGraph import Node 
-# from StructureGraph import GraphStructure 
 from StructureGraphThree import Node 
 from StructureGraphThree import GraphStructure 
 
@@ -37,12 +36,8 @@ from termcolor import colored
 from DependencyGraph import RNG 
 
 # from simple_dummy_names import hierarchical_categorizations, subcategories 
-from simple_dummy_text import dummy_text 
 from transformers import AutoTokenizer 
 from simple_names_three import lengthmessage, lengthmessagetwo, lengthmessagethree 
-
-import sys 
-import time 
 
 class StrangeError(Exception):
     """A custom exception for strange errors."""

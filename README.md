@@ -37,7 +37,7 @@ In this paper, we first point out the insufficiencies in long-context LLMs evalu
     <span style="font-weight: bold; color: dodgerblue">Lack of context length</span>: Some tasks are inherently short-context tasks but are bloated to long-context through injecting semantically irrelevant noise. 
 </li> 
 <li> 
-    3. <span style="font-weight: bold; color: dodgerblue">Lack of scalability</span>: Admittedly, tasks with high reasoning complexity and high information density exists, but these tasks requires huge human-effort to gather, dedup, and verify. The result is lack of scalability in quantity, making it hard to prevail in the community. 
+    <span style="font-weight: bold; color: dodgerblue">Lack of scalability</span>: Admittedly, tasks with high reasoning complexity and high information density exists, but these tasks requires huge human-effort to gather, dedup, and verify. The result is lack of scalability in quantity, making it hard to prevail in the community. 
 </li> 
 </ol> 
 First two is further studied in the above figure. These tasks are not tasks that only long-context LLMs can do. We show that RAG are robust and have performance on par with long-context LLMs. However, given the high efficiency to build and run inference on RAG systems, RAG is more favorable in practice on these tasks. Therefore, we have the following problem to solve. 
@@ -47,7 +47,7 @@ First two is further studied in the above figure. These tasks are not tasks that
 
 <h2>GSM-Infinite</h2> 
 <p>
-We present GSM-\(\infty\), a benchmark with test examples completely synthesized, thus can scaled up infinitely in both context length and reasoning complexity. 
+We present GSM-Infinite, a benchmark with test examples completely synthesized, thus can scaled up infinitely in both context length and reasoning complexity. 
 </p>
 
 <p>

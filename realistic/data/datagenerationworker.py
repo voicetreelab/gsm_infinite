@@ -13,6 +13,8 @@ import os
 from transformers import AutoTokenizer 
 from termcolor import colored 
 
+from simple_names_three import message, messagetwo, messagethree 
+
 generator = {
     "normalforward": drawAll, 
     "forwardreverse": drawAllEquan, 
