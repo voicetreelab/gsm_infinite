@@ -60,7 +60,7 @@ Importantly, the context length generated is high in information density, which 
 (a) and (b) show that retriever, <a href="sentence-transformers/all-mpnet-base-v2">all-mpnet-base-v2</a>, cannot differentiate the close noise we generate from the essential block as they can comfortably do for vt in RULER. (c) and (d) show that retriever's performance is much lower in both Medium and Hard subset of GSM-Infinite than long-context LLMs, showing that the tasks are only Long-context LLM solvable. 
 
 <h2>Leaderboards</h2> 
-Here we provided both the Zero Noise and Long-context leader board. Since the Leaderboard will be updated from time to time. Please be sure to checkout our <a href="https://huggingface.co/spaces/InfiniAILab/GSM-Infinite-Leaderboard">huggingface space website</a> for the latest models and updates. 
+Here we provided both the Zero Noise and Long-context leader board. Since the Leaderboard will be updated from time to time. Please be sure to checkout our <a href="https://infiniailab-gsm-infinite-leaderboard.hf.space">huggingface space website</a> for the latest models and updates. 
 
 Firstly, we evaluated 18 models on GSM-Infinite Zero Noise. The performance are as follows. 
 | Models                | Symbolic | Medium  | Hard    | 1st<50% op on Hard | 1st<10% op on Hard | Avg. Acc op≤30 on Hard | Average↑  |
