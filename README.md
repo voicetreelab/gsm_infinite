@@ -20,7 +20,7 @@ GSM-Infinite is a reasoning benchmarks that is completely synthetic without LLMs
 </div>
 
 <div align="center">
-[<a href="">Paper</a>] | [<a href="https://infini-ai-lab.github.io/gsm_infinite/">Blog</a>] | [<a href="https://huggingface.co/spaces/InfiniAILab/GSM-Infinite-Leaderboard"><span class="icon">🤗</span>Leaderboards at huggingface</a>] 
+[<a href="">Paper</a>] | [<a href="https://infini-ai-lab.github.io/gsm_infinite/">Blog</a>] | [<a href="https://infiniailab-gsm-infinite-leaderboard.hf.space"><span class="icon">🤗</span>Leaderboards at huggingface</a>] 
 </div> 
 
 <h2>Limitation of Existing Long-context Benchmark</h2> 
