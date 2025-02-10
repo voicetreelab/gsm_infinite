@@ -127,7 +127,7 @@ Under `\Symbolic` subset, go in to `run.sh` and fill in necessary api credential
 bash -x run.sh 
 ```
 
-<h3>Generation and Evaluation of Symbolic Dataset</h3> 
+<h3>Generation and Evaluation of Realistic Dataset</h3> 
 
 Under `\realistic` subset, go to `pred` folder, and then open `evaluate_script_template.sh` to fill in the api credentials, model name, and dataset selection configs. Then, hit 
 ``` 
