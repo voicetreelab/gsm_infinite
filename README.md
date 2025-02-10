@@ -20,7 +20,7 @@ GSM-Infinite is a reasoning benchmarks that is completely synthetic without LLMs
 </div>
 
 <div align="center">
-[<a href="">Paper</a>] | [<a href="https://infini-ai-lab.github.io/gsm_infinite/">Blog</a>] | [<a href=""><span class="icon">🤗</span>Leaderboards at huggingface</a>] 
+[<a href="">Paper</a>] | [<a href="https://infini-ai-lab.github.io/gsm_infinite/">Blog</a>] | [<a href="https://huggingface.co/spaces/InfiniAILab/GSM-Infinite-Leaderboard"><span class="icon">🤗</span>Leaderboards at huggingface</a>] 
 </div> 
 
 <h2>Limitation of Existing Long-context Benchmark</h2> 
@@ -60,7 +60,7 @@ Importantly, the context length generated is high in information density, which 
 (a) and (b) show that retriever, <a href="sentence-transformers/all-mpnet-base-v2">all-mpnet-base-v2</a>, cannot differentiate the close noise we generate from the essential block as they can comfortably do for vt in RULER. (c) and (d) show that retriever's performance is much lower in both Medium and Hard subset of GSM-Infinite than long-context LLMs, showing that the tasks are only Long-context LLM solvable. 
 
 <h2>Leaderboards</h2> 
-Here we provided both the Zero Noise and Long-context leader board. Since the Leaderboard will be updated from time to time. Please be sure to checkout our <a href="https://huggingface.co/spaces/BY7O0un8yig8O/leaderboard-example">huggingface space website</a> for the latest models and updates. 
+Here we provided both the Zero Noise and Long-context leader board. Since the Leaderboard will be updated from time to time. Please be sure to checkout our <a href="https://huggingface.co/spaces/InfiniAILab/GSM-Infinite-Leaderboard">huggingface space website</a> for the latest models and updates. 
 
 Firstly, we evaluated 18 models on GSM-Infinite Zero Noise. The performance are as follows. 
 | Models                | Symbolic | Medium  | Hard    | 1st<50% op on Hard | 1st<10% op on Hard | Avg. Acc op≤30 on Hard | Average↑  |
