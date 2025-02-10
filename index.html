@@ -416,13 +416,13 @@
             <figure class="figure">
               <img src="static/images/evaluationfronfigure.png" alt="RAG robust performance on common long-context tasks">
               <figcaption class="caption">Evaluation Figure 1. (a) (b) shows that both forward and backward problems can be modeled by sigmoid function well. (c) and (d) shows that close noise is really important to make sure that the problem is only long-context LLM solvable. </figcaption> 
-          </figure>
+            </figure>
             <p>
                 Here are four interesting observations we found from the datasets: 
             </p> 
-            <div class="figure">
+            <figure class="figure">
               <img src="static/images/forwardre.png" alt="RAG robust performance on common long-context tasks" /> 
-            </div>
+            </figure> 
             <p> 
                 1. We found that LLM reasoning performance naturally display a natural exponential decrease as reasoning complexity increases. In Medium and Hard tasks, the performance degradation can be naturally modeled by a <span style="font-weight: bold; color: dodgerblue">sigmoid</span> function well. 
                 The performance degradation intunitively make sense becuase for op is small. The LLMs have reasoning capacity can make sure all the problems are correctly solved. Then, we the difficulty of the problem increases, the LLM's performance quickly decreases and finally plateaus near zero. 
@@ -433,7 +433,7 @@
                 We found that both forward-thinking and reverse-thinking problems can both be modeled by the sigmoid functions. However, the performance of <span style="font-weight: bold; color: dodgerblue">forward-thinking problem is consistently better for most LLMs than the reverse-thinking problems. </span> 
                 Above we show five different models showing the trend. 
             </p>
-            <figure class="figure" align="left"> 
+            <figure class="figure"> 
               <img src="static/images/rag22.png" alt="RAG robust performance on common long-context tasks">
             </figure>
             <p>
