@@ -91,6 +91,20 @@ if __name__ == '__main__':
         default="0",
         help='noise context length'
     )
+
+    parser.add_argument(
+        '--limit',
+        type=int,
+        default=100,
+        help="max number of examples per op"
+    )
+
+    parser.add_argument(
+        '--filter-config',
+        type=json.loads,
+        help='Filter configuration as a JSON string.'
+    )
+
     parser.add_argument(
         '--op-range',
         type=str,
@@ -132,7 +146,23 @@ if __name__ == '__main__':
         # opset = set(args.op_range)
         # unprocessed_dataset = unprocessed_dataset.filter(lambda example: example["op"] in opset)
         full_dataset = load_dataset(f"{args.dataset_name}_{length}")
-        unprocessed_dataset = concatenate_datasets([full_dataset[split] for split in subsets])
+        filter_config = args.filter_config
+        if filter_config:
+            filtered_datasets = []
+            for split in subsets:
+                dataset_split = full_dataset[split]
+                total_samples = min(args.limit, len(dataset_split))
+                filtered_data = []
+                for config in filter_config:
+                    num_to_add = int(total_samples * config["percentage"])
+                    current_filter = {key: value for key, value in config.items() if key not in ["percentage"]}
+                    filtered_subset = dataset_split.filter(lambda example: all(example[key] == value for key, value in current_filter.items()))
+                    filtered_data.extend(filtered_subset.select(range(min(num_to_add, len(filtered_subset)))))
+                filtered_datasets.append(Dataset.from_list(filtered_data))
+            unprocessed_dataset = concatenate_datasets(filtered_datasets)
+        else:
+            unprocessed_dataset = concatenate_datasets([full_dataset[split].select(range(min(args.limit, len(full_dataset[split])))) for split in subsets])
+        # unprocessed_dataset = concatenate_datasets([full_dataset[split].select(range(min(args.limit, len(full_dataset[split])))) for split in subsets])
         # unprocessed_dataset = load_from_disk(
         #     f"{args.dataset_name}_{length}",
         #     # data_dir=f"o
