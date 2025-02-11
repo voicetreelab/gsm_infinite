@@ -3,3 +3,5 @@ __pycache__
 realistic/.DS_Store 
 symbolic/.DS_Store 
 static/.DS_Store 
+datasets/
+results/
