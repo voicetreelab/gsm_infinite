@@ -178,7 +178,13 @@ The Realistic dataset (Medium and Hard subsets) uses a similar process:
    ```bash
    bash -x run.sh
    ```
-   This script samples predictions and then automatically evaluates them using `eval_realistic.py`. Note that there is no separate `run_evaluation` flag here; evaluation always follows sampling.
+   This script samples predictions and then automatically evaluates them using `eval_realistic.py`. Note that there is no separate `run_evaluation` flag here; evaluation always follows sampling. 
+
+   - Configure the sampling model details (if `run_sampling=true`):
+     - `backend_type`:  `'openai'`, `'gemini'`, or `'anthropic'`
+     - `OPENAI_BASE_URL` and `OPENAI_API_KEY` (or `GEMINI_API_KEY` or `ANTHROPIC_API_KEY`)
+     - `model_name`, `dataset_base` (if you want to use custom datasets)
+     - `num_samples`, `temperature`, `max_tokens`, etc.
 
 4. **Check your output**  
    - New predictions will be saved in folder `datasets`.
@@ -187,4 +193,19 @@ The Realistic dataset (Medium and Hard subsets) uses a similar process:
 If you want to generate the data yourself, please feel free to look into the `data` folder, and look into the `test_generate3.sh`. Then, fill in your dataset settings (ops, context length). Try hitting 
 ``` 
 bash -x test_generate3.sh 
+``` 
+
+<h2>Citation</h2> 
+If you think our code base is useful, please consider citing the code through the following bibtxt. 
+
+```
+@misc{zhou2025gsminfinitellmsbehaveinfinitely,
+        title={GSM-Infinite: How Do Your LLMs Behave over Infinitely Increasing Context Length and Reasoning Complexity?}, 
+        author={Yang Zhou and Hongyi Liu and Zhuoming Chen and Yuandong Tian and Beidi Chen},
+        year={2025},
+        eprint={2502.05252},
+        archivePrefix={arXiv},
+        primaryClass={cs.CL},
+        url={https://arxiv.org/abs/2502.05252}, 
+  } 
 ``` 
