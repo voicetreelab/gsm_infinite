@@ -120,19 +120,69 @@ pip install -r requirements.txt
 If you want to serve model locally, please install platforms of your choice (vllm, sglang, etc.). 
 
 <h3>Generation and Evaluation of Symbolic Dataset</h3> 
-For both the datasets, we have sampled dataset generated and uploaded to huggingface public datasets, which you can download and try. However, we also provide necessary code to generate the data locally. 
+We provide a `run.sh` script to sample from and evaluate on the Symbolic dataset.  Below is a quick walkthrough:
 
-Under `\Symbolic` subset, go in to `run.sh` and fill in necessary api credentials, model name, and dataset selection configs. You can directly run to use the existing datasets on the huggingface. 
+1. **Navigate to the Symbolic directory**
+
+    ```bash
+    cd symbolic
+    ```
+
+2. **Edit `config.sh`**  
+   - Set `run_sampling` to `true` if you want to sample new predictions from your model. Set to `false` to skip sampling.
+     ```bash
+     run_sampling=false     # Set to true to sample from the model
+     ```
+   - Set `run_evaluation` to `true` if you want to evaluate existing predictions (this requires an evaluation model, typically a smaller LLM, specified in `EVAL_OPENAI_*` variables). Set to `false` to skip evaluation.
+     ```bash
+     run_evaluation=true    # Set to true to evaluate existing predictions
+     ```
+   - Configure the sampling model details (if `run_sampling=true`):
+     - `backend_type`:  `'openai'`, `'gemini'`, or `'anthropic'`
+     - `SAMPLER_OPENAI_BASE_URL` and `SAMPLER_OPENAI_API_KEY` (or `GEMINI_API_KEY` or `ANTHROPIC_API_KEY`)
+     - `model_name`, `dataset_base` (if you want to use custom datasets)
+     - `num_samples`, `temperature`, `max_tokens`, etc.
+   - Configure the evaluation model details (if `run_evaluation=true`):
+     - `EVAL_OPENAI_BASE_URL` and `EVAL_OPENAI_API_KEY` (for an OpenAI-compatible evaluation model)
+
+3. **Run the script**  
+   ```bash
+   bash -x run.sh
+   ```
+
+4. **Check your output**  
+   - New predictions (if sampled) will be saved in folder `datasets`.
+   - Evaluation results (if generated) will be in folder `results`.
+
+If you want to generate the data yourself, please feel free to look into the `data` folder, and look into the `generate_symbolic.sh`. Then, fill in your dataset settings (name, ops, context length). Try hitting 
 ``` 
-bash -x run.sh 
-```
+bash -x generate_symbolic.sh 
+``` 
 
 <h3>Generation and Evaluation of Realistic Dataset</h3> 
 
-Under `\realistic` subset, go to `pred` folder, and then open `evaluate_script_template.sh` to fill in the api credentials, model name, and dataset selection configs. Then, hit 
-``` 
-bash -x evaluate_script_template.sh 
-```
+h3>Generation and Evaluation of Realistic Dataset</h3> 
+The Realistic dataset (Medium and Hard subsets) uses a similar process:
+
+1. **Navigate to the Realistic directory**
+
+    ```bash
+    cd realistic
+    ```
+
+2. **Edit `config.sh`**  
+   - Fill in your API keys, backend type, model name, etc.
+   - Adjust `lengths` and `dataset_suffixes` to control which subsets and context lengths to process.
+
+3. **Run the script**  
+   ```bash
+   bash -x run.sh
+   ```
+   This script samples predictions and then automatically evaluates them using `eval_realistic.py`. Note that there is no separate `run_evaluation` flag here; evaluation always follows sampling.
+
+4. **Check your output**  
+   - New predictions will be saved in folder `datasets`.
+   - Evaluation results will be in folder `results`.
 
 If you want to generate the data yourself, please feel free to look into the `data` folder, and look into the `test_generate3.sh`. Then, fill in your dataset settings (ops, context length). Try hitting 
 ``` 
