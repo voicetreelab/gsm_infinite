@@ -106,8 +106,8 @@ if __name__ == '__main__':
 
     parser.add_argument(
         '--length',
-        type=int,
-        default=0,
+        type=str,
+        default="0",
         help='noise context length'
     )
 
@@ -115,6 +115,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     ddict = {}
     length = args.length
+    if isinstance(length, str):
+        if length.lower().endswith('k'):
+            length = int(length[:-1]) * 1000
+        else:
+            length = int(length)
     seed = 42
     generator = generate_payload.FindGraphGenerator(seed)
     dataset_list = []
@@ -132,7 +137,7 @@ if __name__ == '__main__':
         dataset = Dataset.from_generator(generate_examples, gen_kwargs={"ops": ops, "ids": ids, "length": length})
         if (op < args.min_op):
             continue
-        dataset.push_to_hub(f"{args.dataset_name}_{length}", split=f"ops_{op}", private=True)
+        dataset.push_to_hub(f"{args.dataset_name}_{args.length}", split=f"ops_{op}", private=True)
  
 
     
