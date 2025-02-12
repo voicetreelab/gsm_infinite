@@ -38,13 +38,13 @@ dataset_suffixes=( "symbolic" )
 # Operation Range Configuration (Per length and suffix). if empty, the subset will be skipped.
 declare -A ops_config
 # Example configurations:
-ops_config["0_symbolic"]='{"start": 2, "end": 20, "stride": 1}' 
-ops_config["8k_symbolic"]='{"start": 2, "end": 10, "stride": 1}' 
-ops_config["16k_symbolic"]='{"start": 2, "end": 10, "stride": 1}' 
-ops_config["32k_symbolic"]='{"start": 2, "end": 10, "stride": 1}'
+ops_config["0_symbolic"]='{"start": 1, "end": 50, "stride": 1}' 
+ops_config["8k_symbolic"]='{"start": 1, "end": 30, "stride": 1}' 
+ops_config["16k_symbolic"]='{"start": 1, "end": 20, "stride": 1}' 
+ops_config["32k_symbolic"]='{"start": 1, "end": 10, "stride": 1}'
 
 # Batch size and example limit per op
 batch_size=200
-limit=10
+limit=100
 
 

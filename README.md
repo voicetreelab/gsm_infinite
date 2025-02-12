@@ -131,7 +131,7 @@ We provide a `run.sh` script to sample from and evaluate on the Symbolic dataset
 2. **Edit `config.sh`**  
    - Set `run_sampling` to `true` if you want to sample new predictions from your model. Set to `false` to skip sampling.
      ```bash
-     run_sampling=false     # Set to true to sample from the model
+     run_sampling=true      # Set to true to sample from the model
      ```
    - Set `run_evaluation` to `true` if you want to evaluate existing predictions (this requires an evaluation model, typically a smaller LLM, specified in `EVAL_OPENAI_*` variables). Set to `false` to skip evaluation.
      ```bash

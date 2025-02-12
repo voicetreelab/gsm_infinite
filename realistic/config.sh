@@ -27,18 +27,18 @@ dataset_suffixes=( "medium" "hard" )
 # Operation Range Configuration (Per length and suffix). if empty, the subset will be skipped.
 declare -A ops_config
 # Example configurations:
-ops_config["0_medium"]='{"start": 2, "end": 20, "stride": 1}' 
-ops_config["0_hard"]='{"start": 2, "end": 20, "stride": 1}' 
-ops_config["8k_medium"]='{"start": 2, "end": 10, "stride": 1}' 
-ops_config["8k_hard"]='{"start": 2, "end": 10, "stride": 1}'  
-ops_config["16k_medium"]='{"start": 2, "end": 10, "stride": 1}' 
-ops_config["16k_hard"]='{"start": 2, "end": 10, "stride": 1}'  
-ops_config["32k_medium"]='{"start": 2, "end": 10, "stride": 1}'
-ops_config["32k_hard"]='{"start": 2, "end": 10, "stride": 1}'  
+ops_config["0_medium"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["0_hard"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["8k_medium"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["8k_hard"]='{"start": 2, "end": 30, "stride": 1}'  
+ops_config["16k_medium"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["16k_hard"]='{"start": 2, "end": 30, "stride": 1}'  
+ops_config["32k_medium"]='{"start": 2, "end": 30, "stride": 1}'
+ops_config["32k_hard"]='{"start": 2, "end": 30, "stride": 1}'  
 
 # Batch size and example limit per op
 batch_size=200
-limit=20
+limit=200
 
 
 # Filter Configuration (JSON string)
