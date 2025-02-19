@@ -127,6 +127,7 @@ We provide a `run.sh` script to sample from and evaluate on the Symbolic dataset
     ```bash
     cd symbolic
     ```
+    In this repo, we recommend running evaluations with api calling mechanism. Even for open-source models, we advise either deploy models locally via vllm/sglang, or using api providers such as DeepInfra, etc. 
 
 2. **Edit `config.sh`**  
    - Set `run_sampling` to `true` if you want to sample new predictions from your model. Set to `false` to skip sampling.
@@ -172,19 +173,19 @@ The Realistic dataset (Medium and Hard subsets) uses a similar process:
 
 2. **Edit `config.sh`**  
    - Fill in your API keys, backend type, model name, etc.
-   - Adjust `lengths` and `dataset_suffixes` to control which subsets and context lengths to process.
+   - Adjust `lengths` and `dataset_suffixes` to control which subsets and context lengths to process. 
+
+   - Configure the model details 
+     - `backend_type`:  `'openai'`, `'gemini'`, or `'anthropic'`
+     - `OPENAI_BASE_URL` and `OPENAI_API_KEY` (or `GEMINI_API_KEY` or `ANTHROPIC_API_KEY`)
+     - `model_name`, `dataset_base` (if you want to use custom datasets)
+     - `num_samples`, `temperature`, `max_tokens`, etc.
 
 3. **Run the script**  
    ```bash
    bash -x run.sh
    ```
    This script samples predictions and then automatically evaluates them using `eval_realistic.py`. Note that there is no separate `run_evaluation` flag here; evaluation always follows sampling. 
-
-   - Configure the sampling model details (if `run_sampling=true`):
-     - `backend_type`:  `'openai'`, `'gemini'`, or `'anthropic'`
-     - `OPENAI_BASE_URL` and `OPENAI_API_KEY` (or `GEMINI_API_KEY` or `ANTHROPIC_API_KEY`)
-     - `model_name`, `dataset_base` (if you want to use custom datasets)
-     - `num_samples`, `temperature`, `max_tokens`, etc.
 
 4. **Check your output**  
    - New predictions will be saved in folder `datasets`.
