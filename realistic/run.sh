@@ -35,7 +35,7 @@ for length in "${lengths[@]}"; do
 
         echo "Running with length: $length, dataset: $dataset_name, save-dataset: $save_dataset"
 
-        python3 ../symbolic/pred/pred.py \
+        python3 pred/pred.py \
             --dataset-name "$dataset_name" \
             --model-name "$model_name" \
             --save-dataset "$save_dataset" \
