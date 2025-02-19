@@ -5,3 +5,5 @@ symbolic/.DS_Store
 static/.DS_Store 
 datasets/
 results/
+dist/
+*.egg-info
