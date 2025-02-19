@@ -3,10 +3,10 @@
 # Configure your API Keys and URLs
 # You can use environment variables here as well
 backend_type='openai' # can be 'openai', 'gemini' and 'anthropic'
-OPENAI_BASE_URL='http://127.0.0.1:30000/v1'
-OPENAI_API_KEY='EXAMPLE API KEY'
-GEMINI_API_KEY=''
-ANTHROPIC_API_KEY=''
+export OPENAI_BASE_URL='http://127.0.0.1:30000/v1'
+export OPENAI_API_KEY='EXAMPLE API KEY'
+export GEMINI_API_KEY=''
+export ANTHROPIC_API_KEY=''
 
 # Model and Dataset Configuration
 model_name='Qwen/Qwen2.5-7B-Instruct' # API model name
@@ -17,6 +17,10 @@ save_name='qwen-2.5-7b-instruct' # Model name for saving the results
 num_samples=1
 temperature=0.0
 max_tokens=4096
+
+# Batch size and example limit per op
+batch_size=200
+limit=200
 
 # Lengths to process (can be numbers or strings like '8k')
 lengths=( "0" "8k" "16k" "32k" )
@@ -35,11 +39,6 @@ ops_config["16k_medium"]='{"start": 2, "end": 30, "stride": 1}'
 ops_config["16k_hard"]='{"start": 2, "end": 30, "stride": 1}'  
 ops_config["32k_medium"]='{"start": 2, "end": 30, "stride": 1}'
 ops_config["32k_hard"]='{"start": 2, "end": 30, "stride": 1}'  
-
-# Batch size and example limit per op
-batch_size=200
-limit=200
-
 
 # Filter Configuration (JSON string)
 filter_config='[

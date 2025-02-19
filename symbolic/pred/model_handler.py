@@ -80,13 +80,8 @@ class ModelHandler:
             self.client = anthropic.Anthropic(
                 api_key=self.api_key,
             )
-            pass
-        elif self.model_type == "vllm":
-            if not torch.cuda.is_available():
-                raise RuntimeError("vLLM backend requires GPU support")
-        elif self.model_type == "sglang":
-            if not torch.cuda.is_available():
-                raise RuntimeError("SGLang backend requires GPU support")
+        else:
+            raise NotImplementedError("not implemented")
 
     @retry_with_exponential_backoff
     def generate_answer(
