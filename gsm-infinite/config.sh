@@ -15,9 +15,11 @@ ANTHROPIC_API_KEY=''
 EVAL_OPENAI_BASE_URL='http://127.0.0.1:30000/v1'
 EVAL_OPENAI_API_KEY='EXAMPLE API KEY'
 
-# Control sampling and evaluation
+# Control sampling and evaluation (can be set from command line)
 run_sampling=true  # Set to "true" to run sampling, "false" to skip
 run_evaluation=true # Set to "true" to run evaluation, "false" to skip
+run_symbolic_evaluation=false # Set to "true" to ONLY run symbolic evaluation
+run_realistic_evaluation=false # Set to "true" to ONLY run realistic evaluation
 
 # Model and Dataset Configuration
 model_name='Qwen/Qwen2.5-7B-Instruct' # API model name
@@ -26,14 +28,30 @@ save_name='qwen-2.5-7b-instruct' # Model name for saving the results
 
 # Sampling Settings
 num_samples=1
-temperature=1.0
+temperature_symbolic=1.0 # Temperature for symbolic
+temperature_realistic=0.0 # Temperature for realistic
 max_tokens=4096
 
+# Batch size and example limit per op
+batch_size=200
+limit_symbolic=100 # Limit for symbolic
+limit_realistic=100 # Limit for realistic
+
+
 # Lengths to process (can be numbers or strings like '8k')
-lengths=( "0" "8k" "16k" "32k" )
+lengths=( 
+    "0" 
+    "8k" 
+    "16k" 
+    "32k" 
+)
 
 # Dataset suffixes
-dataset_suffixes=( "symbolic" )
+dataset_suffixes=( 
+    "symbolic" 
+    "medium" 
+    "hard" 
+)
 
 # Operation Range Configuration (Per length and suffix). if empty, the subset will be skipped.
 declare -A ops_config
@@ -43,8 +61,23 @@ ops_config["8k_symbolic"]='{"start": 1, "end": 30, "stride": 1}'
 ops_config["16k_symbolic"]='{"start": 1, "end": 20, "stride": 1}' 
 ops_config["32k_symbolic"]='{"start": 1, "end": 10, "stride": 1}'
 
-# Batch size and example limit per op
-batch_size=200
-limit=100
+ops_config["0_medium"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["8k_medium"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["16k_medium"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["32k_medium"]='{"start": 2, "end": 30, "stride": 1}'
+
+ops_config["0_hard"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["8k_hard"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["16k_hard"]='{"start": 2, "end": 30, "stride": 1}' 
+ops_config["32k_hard"]='{"start": 2, "end": 30, "stride": 1}'
 
 
+# Filter Configuration (JSON string, only used for realistic)
+filter_config='[ 
+    {"percentage": 0.4, "template": "crazy_zootopia", "mode": "normalforward"},
+    {"percentage": 0.05, "template": "movie_festival_awards", "mode": "normalforward"},
+    {"percentage": 0.05, "template": "teachers_in_school", "mode": "normalforward"},
+    {"percentage": 0.4, "template": "crazy_zootopia", "mode": "forwardreverse"},
+    {"percentage": 0.05, "template": "movie_festival_awards", "mode": "forwardreverse"},
+    {"percentage": 0.05, "template": "teachers_in_school", "mode": "forwardreverse"}
+]'

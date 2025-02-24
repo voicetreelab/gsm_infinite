@@ -80,15 +80,6 @@ def criteriaoutput(generatedtext, inputexample):
 
 
 def postprocess_line(line, extractions):
-    # correct_counter = 0
-    # line.pop("replies")
-    # variable_list = line["answer_list"]
-    # reply_variables = []
-    # for extraction in extractions:
-    #     variables = re.findall(r'\bV\d+\b', extraction)
-    #     reply_variables.append(list(variables))
-    #     if set(variable_list) == set(variables):
-    #         correct_counter += 1
     corrected, total = criteriaoutput(extractions, line) 
     line["correct_num"] = corrected
     line["reply_answers"] = [""] * total
@@ -148,64 +139,72 @@ if __name__ == '__main__':
                 filtered_datasets.append(filtered_subset)
 
             unprocessed_dataset = [example for sublist in filtered_datasets for example in sublist]
-        results = []
-        processed_examples = []
-        values = []
-        count_dict = {}
-        correct_dict = {}
+            
+        def process_dataset(unprocessed_dataset, filter=None):
+            results = []
+            count_dict = {}
+            correct_dict = {}
+            
+            submission_list = []
+            num_samples = len(unprocessed_dataset[0]["replies"])
         
-        submission_list = []
-        num_samples = len(unprocessed_dataset[0]["replies"])
-    
-        len_dataset = len(unprocessed_dataset)
-        # len_dataset = 1
+            len_dataset = len(unprocessed_dataset)
+            # len_dataset = 1
 
-        for i in range(len_dataset):
-            submission_list.extend(preprocess_line(unprocessed_dataset[i]))
+            for i in range(len_dataset):
+                submission_list.extend(preprocess_line(unprocessed_dataset[i]))
 
-        
-        # extractions = [retrieve_vars_formatted(submission) for submission in submission_list_regex]
-        # extractions = pipeline.process_batch(submission_list, ["" for _ in submission_list], max_workers=50)
-        extractions = submission_list
-        
-        # print(extractions)
-        # print(unprocessed_dataset[0])
+            extractions = submission_list
+                        
+            for i in range(0, len_dataset):
+                results.append(postprocess_line(unprocessed_dataset[i], 
+                                                [extractions[j] for j in range(i*num_samples, (i+1)*num_samples)])
+                            )
+
+            for processed_example in results:
+                op = processed_example["op"]
+                count_dict.setdefault(op, 0)
+                correct_dict.setdefault(op, [])
+                
+                count_dict[op] += 1
+                correct_dict[op].append(processed_example["correct_num"] / len(processed_example["reply_answers"]))                
                     
-        for i in range(0, len_dataset):
-            results.append(postprocess_line(unprocessed_dataset[i], 
-                                            [extractions[j] for j in range(i*num_samples, (i+1)*num_samples)])
-                        )
+            sorted_keys = sorted(count_dict.keys())
             
-        # print(results)
-
-        for processed_example in results:
-            op = processed_example["op"]
-            count_dict.setdefault(op, 0)
-            correct_dict.setdefault(op, [])
-            
-            count_dict[op] += 1
-            correct_dict[op].append(processed_example["correct_num"] / len(processed_example["reply_answers"]))                
+            for sample_num in sample_nums:
+                file_sample_suffix = ""
+                if not sample_num is None:
+                    file_sample_suffix = f"-sample-{sample_num}"
+                else:
+                    sample_num = 1
+                    
                 
-        sorted_keys = sorted(count_dict.keys())
-        
-        for sample_num in sample_nums:
-            file_sample_suffix = ""
-            if not sample_num is None:
-                file_sample_suffix = f"-sample-{sample_num}"
-            else:
-                sample_num = 1
-                
-            
-            import os
-            dir_name = "results"
-            os.makedirs(dir_name, exist_ok=True)  # Create directory if it doesn't exist
-            with open(f"results/{args.save_dataset}_{args.save_name}{file_sample_suffix}.txt", "a+") as file:
-                for op in sorted_keys:
-                    correctnum = 0.0
-                    for elem in correct_dict[op]:
-                        correctnum += 1.0 - (1.0 - elem) ** sample_num
-                    file.write(f"length: {length}, op: {op}, acc: {format(correctnum/count_dict[op], '.4f').rstrip('0').rstrip('.')}" + "\n")
+                import os
+                dir_name = "results"
+                os.makedirs(dir_name, exist_ok=True)  # Create directory if it doesn't exist
+                with open(f"results/{args.save_dataset}_{args.save_name}{file_sample_suffix}.txt", "a+") as file:
+                    for op in sorted_keys:
+                        correctnum = 0.0
+                        for elem in correct_dict[op]:
+                            correctnum += 1.0 - (1.0 - elem) ** sample_num
+                        # file.write(f"length: {length}, op: {op}, acc: {format(correctnum/count_dict[op], '.4f').rstrip('0').rstrip('.')}" + "\n")
+                        output_line = f"length: {length}, op: {op}, acc: {format(correctnum/count_dict[op], '.4f').rstrip('0').rstrip('.')}"
 
+                        if filter:
+                            output_line += f", num_examples: {len(unprocessed_dataset)}"
+                            for key, value in filter.items():
+                                output_line += f", {key}: {value}"
+                        
+                        output_line += "\n"
+                        file.write(output_line)
+
+        process_dataset(unprocessed_dataset)
+
+        if filter_config:
+            for config in filter_config:
+                current_filter = {key: value for key, value in config.items() if key not in ["percentage"]}
+                filtered_subset = [example for example in unprocessed_dataset if all(example[key] == value for key, value in current_filter.items())]
+                process_dataset(filtered_subset, filter=current_filter)
     except Exception as e:
         print(e)
         raise
