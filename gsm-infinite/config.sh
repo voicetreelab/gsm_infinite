@@ -35,7 +35,7 @@ max_tokens=4096
 # Batch size and example limit per op
 batch_size=200
 limit_symbolic=100 # Limit for symbolic
-limit_realistic=100 # Limit for realistic
+limit_realistic=200 # Limit for realistic
 
 
 # Lengths to process (can be numbers or strings like '8k')

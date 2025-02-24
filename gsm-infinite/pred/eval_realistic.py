@@ -191,7 +191,7 @@ if __name__ == '__main__':
                         output_line = f"length: {length}, op: {op}, acc: {format(correctnum/count_dict[op], '.4f').rstrip('0').rstrip('.')}"
 
                         if filter:
-                            output_line += f", num_examples: {len(unprocessed_dataset)}"
+                            output_line += f", num_examples: {len(correct_dict[op])}"
                             for key, value in filter.items():
                                 output_line += f", {key}: {value}"
                         
