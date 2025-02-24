@@ -182,7 +182,7 @@ if __name__ == '__main__':
                 import os
                 dir_name = "results"
                 os.makedirs(dir_name, exist_ok=True)  # Create directory if it doesn't exist
-                with open(f"results/{args.save_dataset}_{args.save_name}{file_sample_suffix}.txt", "a+") as file:
+                with open(f"results/result_{args.save_dataset}_{args.save_name}{file_sample_suffix}.txt", "a+") as file:
                     for op in sorted_keys:
                         correctnum = 0.0
                         for elem in correct_dict[op]:
