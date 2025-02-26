@@ -162,7 +162,7 @@ if st.sidebar.button("Add Series to Plot"):
         # Create a label for the series
         template_str = ", ".join(selected_templates) if len(selected_templates) <= 2 else f"{len(selected_templates)} templates"
         mode_str = ", ".join(selected_modes) if len(selected_modes) <= 2 else f"{len(selected_modes)} modes"
-        label = f"{selected_model} (len={selected_length}, {template_str}, {mode_str})"
+        label = f"{selected_dataset}: {selected_model} (len={selected_length}, {template_str}, {mode_str})"
         
         # Calculate AUC
         auc = calculate_auc(grouped_data['N'].tolist(), grouped_data['accuracy'].tolist())
@@ -188,7 +188,7 @@ if st.sidebar.button("Add Series to Plot"):
         filtered_data = filtered_data.sort_values('N')
         
         # Create a label for the series
-        label = f"{selected_model} (len={selected_length})"
+        label = f"{selected_dataset}: {selected_model} (len={selected_length})"
         
         # Calculate AUC
         auc = calculate_auc(filtered_data['N'].tolist(), filtered_data['accuracy'].tolist())
@@ -303,8 +303,9 @@ if st.session_state.selected_series:
             else:
                 avg_accuracies.append(None)
         
-        # Calculate AUC for average line
-        avg_auc = calculate_auc(all_n_values, avg_accuracies)
+        # Calculate average of individual AUCs instead of AUC of the average line
+        avg_auc = np.mean([series['auc'] for series in st.session_state.selected_series])
+      
         
         # Add average line to plot
         fig.add_trace(go.Scatter(
