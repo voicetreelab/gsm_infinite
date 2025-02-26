@@ -12,7 +12,7 @@ from scipy import integrate
 
 # Set the page configuration
 st.set_page_config(
-    page_title="GSM-Infinite Results Viewer",
+    page_title="GSM-Infinite Data Viewer",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -220,8 +220,8 @@ if st.session_state.selected_series:
             'Series ID': s['id'][:6],  # Truncate UUID for display
             'Label': s['label'],
             'Points': len(s['x']),
-            'Min N': min(s['x']) if s['x'] else 'N/A',
-            'Max N': max(s['x']) if s['x'] else 'N/A',
+            'Min Op': min(s['x']) if s['x'] else 'N/A',
+            'Max Op': max(s['x']) if s['x'] else 'N/A',
             'Min Accuracy': min(s['y']) if s['y'] else 'N/A',
             'Max Accuracy': max(s['y']) if s['y'] else 'N/A',
             'Avg Accuracy': np.mean(s['y']) if s['y'] else 'N/A',
@@ -259,7 +259,7 @@ else:
 # -----------------------------
 
 if st.session_state.selected_series:
-    st.header("Accuracy vs. Operation Steps")
+    st.header("Accuracy vs. Op")
     
     # Display Options
     col1, col2, col3 = st.columns(3)
@@ -318,8 +318,8 @@ if st.session_state.selected_series:
     
     # Update layout
     fig.update_layout(
-        title=f"Accuracy vs. Operation Steps",
-        xaxis_title="Operation Steps (N)",
+        title=f"Accuracy vs. Op",
+        xaxis_title="Op",
         yaxis_title="Accuracy",
         legend_title="Series",
         hovermode='closest',
@@ -348,7 +348,7 @@ if st.session_state.selected_series:
     if detail_series:
         # Create a DataFrame with the detailed data
         detail_df = pd.DataFrame({
-            'N': detail_series['x'],
+            'Op': detail_series['x'],
             'Accuracy': detail_series['y']
         })
         
@@ -377,7 +377,7 @@ if st.session_state.selected_series:
         for i, (n, acc) in enumerate(zip(series['x'], series['y'])):
             all_series_data.append({
                 'Series': series['label'],
-                'N': n,
+                'Op': n,
                 'Accuracy': acc,
                 'AUC': series['auc']
             })
