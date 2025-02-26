@@ -81,24 +81,33 @@ if has_subset_info:
     ]
     
     # Get all available templates and modes
-    available_templates = sorted(filtered_base['template'].unique())
-    available_modes = sorted(filtered_base['mode'].unique())
+    available_templates = [t for t in sorted(filtered_base['template'].unique()) if t != 'default']
+    available_modes = [m for m in sorted(filtered_base['mode'].unique()) if m != 'default']
+
+    # Replace 'default' with 'all' in the options
+    template_options = ['all'] + available_templates
+    mode_options = ['all'] + available_modes
     
     # Multi-select for templates
     selected_templates = st.sidebar.multiselect(
         "Select Templates",
-        options=available_templates,
-        default=["default"] if "default" in available_templates else [available_templates[0]],
+        options=template_options,
+        default=["all"],
         key="template_selector"
     )
     
     # Multi-select for modes
     selected_modes = st.sidebar.multiselect(
         "Select Modes",
-        options=available_modes,
-        default=["default"] if "default" in available_modes else [available_modes[0]],
+        options=mode_options,
+        default=["all"],
         key="mode_selector"
     )
+    # Process 'all' selection - convert to actual template/mode values
+    if 'all' in selected_templates:
+        selected_templates = available_templates
+    if 'all' in selected_modes:
+        selected_modes = available_modes
 # Import a color library if you want more sophisticated palettes
 import plotly.express as px
 # e. Series Color
@@ -152,7 +161,8 @@ if st.sidebar.button("Add Series to Plot"):
         
         # Group by N and calculate weighted average based on num_examples
         grouped_data = filtered_data.groupby('N').apply(
-            lambda x: np.average(x['accuracy'], weights=x['num_examples'])
+            lambda x: np.average(x['accuracy'], weights=x['num_examples']),
+            include_groups=False  # Add this parameter to fix the deprecation warning
         ).reset_index()
         grouped_data.columns = ['N', 'accuracy']
         
@@ -160,8 +170,8 @@ if st.sidebar.button("Add Series to Plot"):
         grouped_data = grouped_data.sort_values('N')
         
         # Create a label for the series
-        template_str = ", ".join(selected_templates) if len(selected_templates) <= 2 else f"{len(selected_templates)} templates"
-        mode_str = ", ".join(selected_modes) if len(selected_modes) <= 2 else f"{len(selected_modes)} modes"
+        template_str = ", ".join(selected_templates) if len(selected_templates) < len(available_templates) else f"all templates"
+        mode_str = ", ".join(selected_modes) if len(selected_modes) < len(available_modes) else f"all modes"
         label = f"{selected_dataset}: {selected_model} (len={selected_length}, {template_str}, {mode_str})"
         
         # Calculate AUC
