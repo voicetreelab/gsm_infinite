@@ -1,6 +1,6 @@
 <div align="center">
 <h1><img src="static/images/facinfinity.webp" height="30px" align="top"/> GSM-Infinite</h1>
-<p><em>Infinitely Scalable Reasoning Benchmark for Large Language Models</em></p>
+<p><em>Infinitely Scalable Long-context Reasoning Benchmark for Large Language Models</em></p>
 </div>
 
 <div align="center">
@@ -25,6 +25,28 @@
 
 ---
 
+<h2>Limitation of Existing Long-context Benchmark</h2> 
+<div align="center">
+<img src="static/images/rag.png"/>
+<figcaption>RAG can robustly solve most of today popular long-context benchmarks</figcaption> 
+</div> 
+In this paper, we first point out the insufficiencies in long-context LLMs evaluation, highlighting: 
+<ol>
+<li>
+    <span style="font-weight: bold; color: dodgerblue">Lack of reasoning complexity</span>: Most tasks rely on text retrieval, text summarization, QA. 
+</li>
+<li>
+    <span style="font-weight: bold; color: dodgerblue">Lack of context length</span>: Some tasks are inherently short-context tasks but are bloated to long-context through injecting semantically irrelevant noise. 
+</li> 
+<li> 
+    <span style="font-weight: bold; color: dodgerblue">Lack of scalability</span>: Admittedly, tasks with high reasoning complexity and high information density exists, but these tasks requires huge human-effort to gather, dedup, and verify. The result is lack of scalability in quantity, making it hard to prevail in the community. 
+</li> 
+</ol> 
+First two is further studied in the above figure. These tasks are not tasks that only long-context LLMs can do. We show that RAG are robust and have performance on par with long-context LLMs. However, given the high efficiency to build and run inference on RAG systems, RAG is more favorable in practice on these tasks. Therefore, we have the following problem to solve. 
+<p>
+    <span style="font-weight: bold; color: dodgerblue">Problem Statement</span>: How can we develop a benchmark that contains sufficient problems at every fine-grained level of reasoning difficulty, from easy retrieval tasks to infinitely hard challenges, while providing infinitely customizable context length with high information density? 
+</p> 
+
 ## Overview
 
 GSM-Infinite is a **completely synthetic reasoning benchmark** that generates problems with infinitely scalable context length and reasoning complexity. Unlike existing benchmarks that rely on text retrieval or summarization, GSM-Infinite creates high information density tasks that can only be solved by long-context LLMs, not by RAG systems.
@@ -36,6 +58,19 @@ GSM-Infinite is a **completely synthetic reasoning benchmark** that generates pr
 - 🎯 **Three Difficulty Levels**: Symbolic, Medium, and Hard subsets
 - 📊 **Comprehensive Evaluation**: Built-in evaluation scripts and leaderboards
 - 🔬 **Synthetic Generation**: No LLMs in the loop, ensuring unbiased benchmarks
+
+### Why GSM-Infinite?
+
+<div align="center">
+<img src="static/images/rag22.png" width="600"/>
+<p><em>RAG systems fail on GSM-Infinite due to high information density</em></p>
+</div>
+
+Traditional long-context benchmarks can often be solved by RAG systems, making them insufficient for evaluating true long-context reasoning. GSM-Infinite addresses this by:
+
+1. **High Information Density**: Every part of the context is essential
+2. **Reasoning Complexity**: Requires multi-step mathematical reasoning
+3. **Infinite Scalability**: Generate unlimited test cases at any difficulty
 
 ## Quick Start
 
@@ -49,8 +84,8 @@ cd gsm_infinite
 # Install dependencies
 pip install -r requirements.txt
 
-# Or install as a package
-pip install gsm-infinite
+# or
+pip install -e .
 ```
 
 ### Basic Usage
@@ -72,6 +107,7 @@ pip install gsm-infinite
    cd gsm-infinite
    bash run.sh
    ```
+Results are stored in `gsm-infinite/results`
 
 3. **View results** with the interactive dashboard:
    ```bash
@@ -113,35 +149,17 @@ For detailed information, please refer to our comprehensive documentation:
 
 - 📖 **[Installation Guide](docs/INSTALLATION.md)** - Detailed setup instructions
 - 🚀 **[Usage Guide](docs/USAGE.md)** - Complete usage examples
-- 🔧 **[Data Generation](docs/DATA_GENERATION.md)** - Generate custom datasets
-- 📊 **[Evaluation Guide](docs/EVALUATION.md)** - Evaluate your models
+<!-- - 🔧 **[Data Generation](docs/DATA_GENERATION.md)** - Generate custom datasets -->
+<!-- - 📊 **[Evaluation Guide](docs/EVALUATION.md)** - Evaluate your models -->
 - 🏆 **[Leaderboards](docs/LEADERBOARDS.md)** - Current model rankings
-- 🔍 **[API Reference](docs/API_REFERENCE.md)** - Configuration options
+<!-- - 🔍 **[API Reference](docs/API_REFERENCE.md)** - Configuration options -->
 <!-- - 🤝 **[Contributing](docs/CONTRIBUTING.md)** - How to contribute -->
 
 ## Results
 
 Our benchmark reveals significant differences in long-context reasoning capabilities across models. See our [leaderboards](https://infiniailab-gsm-infinite-leaderboard.hf.space) for the latest results.
 
-**Top performers on Zero Noise tasks:**
-- DeepSeek-R1: 8534.88 average score
-- GPT-o3-mini: 6931.88 average score  
-- GPT-o1-mini: 4951.11 average score
-
 For complete results and analysis, visit our [paper](https://arxiv.org/abs/2502.05252) and [leaderboard](docs/LEADERBOARDS.md).
-
-## Why GSM-Infinite?
-
-<div align="center">
-<img src="static/images/rag22.png" width="600"/>
-<p><em>RAG systems fail on GSM-Infinite due to high information density</em></p>
-</div>
-
-Traditional long-context benchmarks can often be solved by RAG systems, making them insufficient for evaluating true long-context reasoning. GSM-Infinite addresses this by:
-
-1. **High Information Density**: Every part of the context is essential
-2. **Reasoning Complexity**: Requires multi-step mathematical reasoning
-3. **Infinite Scalability**: Generate unlimited test cases at any difficulty
 
 ## Citation
 

@@ -46,7 +46,7 @@ bash run.sh
 This will:
 - Sample predictions from your model
 - Evaluate the results
-- Save outputs to the `datasets/` and `results/` directories
+- Save dataset and model output to the `datasets/` directory and final results to `results/` directory
 
 ### 3. View Results
 
@@ -182,7 +182,7 @@ filter_config='[
 ]'
 ```
 
-### Direct Python Usage
+<!-- ### Direct Python Usage
 
 You can also use GSM-Infinite programmatically:
 
@@ -203,7 +203,7 @@ results = evaluate_symbolic(
     predictions_file="path/to/predictions.json",
     model_name="eval_model"
 )
-```
+``` -->
 
 ## Output Structure
 
@@ -212,13 +212,7 @@ After running evaluations, you'll find outputs in these directories:
 ```
 gsm-infinite/
 ├── datasets/           # Generated predictions
-│   ├── symbolic/
-│   ├── medium/
-│   └── hard/
 ├── results/           # Evaluation results
-│   ├── symbolic/
-│   ├── medium/
-│   └── hard/
 └── processed_results.csv  # Aggregated results for dashboard
 ```
 
@@ -227,31 +221,32 @@ gsm-infinite/
 Prediction files are saved as JSON with this structure:
 
 ```json
-{
-    "model_name": "your_model_name",
-    "dataset": "dataset_name",
-    "predictions": [
-        {
-            "problem": "problem_text",
-            "prediction": "model_response",
-            "ground_truth": "correct_answer",
-            "metadata": {...}
-        }
-    ]
-}
+[
+    {
+        "solution": "The solution of this problem",
+        "op": "number of operations in the solution of this problem",
+        "n": "number of variables in this problem",
+        "length": "context length of filler text",
+        "id": "unique id of this problem",
+        "d": "subset id",
+        "replies": [
+            "model's 1st reply",
+            "model's 2nd reply",
+            ...
+        ]
+        .....
+    },
+]
 ```
 
 ### Results Files
 
-Evaluation results include accuracy metrics and detailed analysis:
+Evaluation results include accuracy metrics 
 
-```json
-{
-    "overall_accuracy": 0.85,
-    "accuracy_by_ops": {...},
-    "detailed_results": [...],
-    "metadata": {...}
-}
+```txt
+length: 0, op: 1, acc: 0.99
+length: 0, op: 3, acc: 0.66
+...
 ```
 
 ## Interactive Dashboard
@@ -260,27 +255,22 @@ The Streamlit dashboard provides:
 
 - **Model Comparison**: Compare multiple models side-by-side
 - **Performance Visualization**: Interactive plots of accuracy vs. complexity
-- **Detailed Analysis**: Drill down into specific problems and errors
 - **Export Options**: Download results in various formats
 
 ### Dashboard Features
 
 1. **Series Selection**: Add multiple model/dataset combinations
 2. **Filtering**: Filter by operation count, context length, etc.
-3. **Visualization**: Line plots, bar charts, heatmaps
+3. **Visualization**: Line plots
 4. **Export**: CSV, JSON, and image exports
 
 ## Best Practices
 
 ### For Accurate Evaluation
 
-1. **Use appropriate temperature**: 
-   - Symbolic: Higher temperature (1.0) for exploration
-   - Realistic: Lower temperature (0.0) for consistency
+1. **Sufficient samples**: Use multiple samples for robust statistics
 
-2. **Sufficient samples**: Use multiple samples for robust statistics
-
-3. **Proper evaluation model**: Use a capable model for answer extraction
+2. **Proper evaluation model**: Use a capable model for answer extraction
 
 ### For Efficient Processing
 
@@ -288,41 +278,10 @@ The Streamlit dashboard provides:
 2. **Incremental evaluation**: Run subsets first to test configuration
 3. **Resource monitoring**: Monitor API usage and costs
 
-### For Reproducible Results
 
-1. **Version control**: Track your configuration files
-2. **Seed setting**: Use consistent random seeds when possible
-3. **Documentation**: Record your experimental setup
+<!-- ## Next Steps -->
 
-## Troubleshooting
-
-### Common Issues
-
-**API Rate Limits**
-- Reduce batch size
-- Add delays between requests
-- Use multiple API keys
-
-**Memory Issues**
-- Reduce batch size
-- Process datasets incrementally
-- Use streaming for large datasets
-
-**Evaluation Errors**
-- Check evaluation model configuration
-- Verify answer format consistency
-- Review prediction quality
-
-### Getting Help
-
-For additional support:
-1. Check the [Troubleshooting Guide](TROUBLESHOOTING.md)
-2. Review [GitHub Issues](https://github.com/Infini-AI-Lab/gsm_infinite/issues)
-3. Join our community discussions
-
-## Next Steps
-
-- Learn about [Data Generation](DATA_GENERATION.md) to create custom datasets
-- Explore [Evaluation Details](EVALUATION.md) for advanced evaluation techniques
-- Check the [API Reference](API_REFERENCE.md) for complete configuration options
+<!-- - Learn about [Data Generation](DATA_GENERATION.md) to create custom datasets -->
+<!-- - Explore [Evaluation Details](EVALUATION.md) for advanced evaluation techniques
+- Check the [API Reference](API_REFERENCE.md) for complete configuration options -->
 

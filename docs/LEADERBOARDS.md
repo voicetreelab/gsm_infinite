@@ -119,14 +119,14 @@ To submit your model's results to the leaderboard:
 - Detailed methodology and model information
 - Reproducible evaluation scripts
 
-## Historical Results
+<!-- ## Historical Results
 
 For historical leaderboard data and trend analysis, please visit our [interactive leaderboard](https://infiniailab-gsm-infinite-leaderboard.hf.space) which provides:
 
 - Time-series analysis of model improvements
 - Detailed breakdown by problem categories
 - Interactive filtering and comparison tools
-- Export capabilities for further analysis
+- Export capabilities for further analysis -->
 
 ## Updates and Maintenance
 

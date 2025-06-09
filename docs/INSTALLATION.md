@@ -10,13 +10,7 @@ This guide provides detailed instructions for setting up GSM-Infinite on your sy
 
 ## Installation Methods
 
-### Method 1: Install from PyPI (Recommended)
-
-```bash
-pip install gsm-infinite
-```
-
-### Method 2: Install from Source
+### Method 1: Install from Source
 
 ```bash
 # Clone the repository
@@ -27,7 +21,7 @@ cd gsm_infinite
 pip install -e .
 ```
 
-### Method 3: Manual Installation
+### Method 2: Manual Installation
 
 ```bash
 # Clone the repository
@@ -71,18 +65,6 @@ The following packages will be installed automatically:
 - `matplotlib` - Plotting
 - `pydot` - Graph visualization
 
-## Verification
-
-After installation, verify that everything is working correctly:
-
-```bash
-# Check if the package is installed
-python -c "import gsm_infinite; print('GSM-Infinite installed successfully!')"
-
-# Run a quick test (if you have the source code)
-cd gsm-infinite
-python -c "from data.symbolic.utils import *; print('Symbolic utils loaded successfully!')"
-```
 
 ## Optional: Model Serving Setup
 
@@ -166,15 +148,13 @@ After installation, you'll need to configure GSM-Infinite for your specific setu
 
 If you encounter issues not covered here:
 
-1. Check the [Troubleshooting Guide](TROUBLESHOOTING.md)
-2. Search existing [GitHub Issues](https://github.com/Infini-AI-Lab/gsm_infinite/issues)
-3. Create a new issue with detailed error information
+1. Search existing [GitHub Issues](https://github.com/Infini-AI-Lab/gsm_infinite/issues)
+2. Create a new issue with detailed error information
 
 ## Next Steps
 
 After successful installation:
 
 1. Read the [Usage Guide](USAGE.md) to learn how to use GSM-Infinite
-2. Check out the [Data Generation Guide](DATA_GENERATION.md) to create custom datasets
-3. Explore the [Evaluation Guide](EVALUATION.md) to evaluate your models
+<!-- 2. Explore the [Evaluation Guide](EVALUATION.md) to evaluate your models -->
 
