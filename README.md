@@ -149,9 +149,10 @@ For detailed information, please refer to our comprehensive documentation:
 
 - 📖 **[Installation Guide](docs/INSTALLATION.md)** - Detailed setup instructions
 - 🚀 **[Usage Guide](docs/USAGE.md)** - Complete usage examples
-<!-- - 🔧 **[Data Generation](docs/DATA_GENERATION.md)** - Generate custom datasets -->
-<!-- - 📊 **[Evaluation Guide](docs/EVALUATION.md)** - Evaluate your models -->
+Evaluate your models -->
 - 🏆 **[Leaderboards](docs/LEADERBOARDS.md)** - Current model rankings
+<!-- - 🔧 **[Data Generation](docs/DATA_GENERATION.md)** - Generate custom datasets -->
+<!-- - 📊 **[Evaluation Guide](docs/EVALUATION.md)** - 
 <!-- - 🔍 **[API Reference](docs/API_REFERENCE.md)** - Configuration options -->
 <!-- - 🤝 **[Contributing](docs/CONTRIBUTING.md)** - How to contribute -->
 

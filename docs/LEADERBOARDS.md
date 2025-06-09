@@ -128,13 +128,13 @@ For historical leaderboard data and trend analysis, please visit our [interactiv
 - Interactive filtering and comparison tools
 - Export capabilities for further analysis -->
 
-## Updates and Maintenance
+<!-- ## Updates and Maintenance
 
 This leaderboard is updated regularly as new models are evaluated. For the most current results:
 
 1. Visit our [interactive leaderboard](https://infiniailab-gsm-infinite-leaderboard.hf.space)
 2. Check our [GitHub repository](https://github.com/Infini-AI-Lab/gsm_infinite) for updates
-3. Follow our announcements for major leaderboard updates
+3. Follow our announcements for major leaderboard updates -->
 
 ---
 
