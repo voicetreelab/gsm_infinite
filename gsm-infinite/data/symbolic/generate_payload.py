@@ -111,7 +111,7 @@ class FindGraphGenerator:
                     evaluation_order.append(variable)
                     solution+=f"{variable} = {expression} = {evaluated_expression}{node_values[variable]};\n"
                 else:
-                    solution+=f"No other varaibles can be derived from {stack[-1]};\n"
+                    solution+=f"No other variables can be derived from {stack[-1]};\n"
                     stack.pop()
 
             solution+=f"\nNow we have done all the calculations. Derived variables are:\n"
