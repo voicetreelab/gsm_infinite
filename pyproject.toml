@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gsm-infinite"  # Choose a suitable name
-version = "0.1.0"  # Start with an initial version
+version = "0.2.0"  # Start with an initial version
 description = "GSM-Infinite Benchmark for LLMs"
 readme = "README.md"
 requires-python = ">=3.8"  # Specify minimum Python version
