@@ -1,0 +1,19 @@
+ULTRA HARD Question (32k + op20)
+Expected Answer: 4
+
+SOURCE FILE: gsm-infinite/data/realistic/Igsm/32k/hard/20/igsm_op20_ip20_force_True_0.jsonl
+
+QUESTION: What is the average number of newborn children per adult crow in Cedar Valley?
+
+PROBLEM:
+The average number of newborn children per adult sable antelope in Starlit Ocean equals the sum of the total number of newborn animal children in Oakridge Riverside and the number of adult eagle in Pine Ridge. The number of adult crow in Cedar Valley equals 2 times the average number of newborn children per adult eagle in Pine Ridge. The number of adult green basilisk in Starlit Ocean equals the difference between the average number of newborn children per adult eagle in Oakridge Riverside and the average number of newborn children per adult eagle in Oakridge Riverside. The number of adult pegasus in Twilight Waters equals the sum of the average number of newborn children per adult eagle in Pine Ridge and the average number of newborn children per adult eagle in Oakridge Riverside. The number of adult crested gecko in Starlit Ocean equals the number of adult crow in Oakridge Riverside. The average number of newborn children per adult tiger prawn in Silverlight Depths equals the difference between the average number of newborn children per adult crow in Cedar Valley and the average number of newborn children per adult eagle in Oakridge Riverside. The average number of newborn children per adult pegasus in Twilight Waters equals the sum of the average number of newborn children per adult eagle in Cedar Valley and the total number of newborn animal children in Oakridge Riverside. The number of adult beaver in Gleamsea Basin equals the number of adult crow in Oakridge Riverside. The number of adult lemming in Gleamsea Basin equals the difference between the average number of newborn children per adult crow in Oakridge Riverside and the average number of newborn children per adult eagle in Oakridge Riverside. The number of adult blackbuck in Starlit Ocean equals the difference between the number of adult crow in Cedar Valley and the number of adult eagle in Cedar Valley. The average number of newborn children per adult agouti in Gleamsea Basin equals the average number of newborn children per adult eagle in Cedar Valley. The average number of newborn children per adult leopard gecko in Silverlight Depths equals the average number of newborn children per adult eagle in Cedar Valley. [continues with extremely complex mathematical relationships...]
+
+SOLUTION:
+The question is difficult, so we use equations to solve it. Define adult owl in Pine Ridge as x; we don't know its value yet but will find it out later. Define average number of newborn children per adult eagle in Oakridge Riverside as m; E = x = x; so m = 1 + E = 1 + x = x + 1. Define average number of newborn children per adult blue jay in Beverly Forest as G; so G = m = x + 1. Define adult blue jay in Pine Ridge as L; so L = G - x = (x + 1) - (x) = 1. Define adult blue jay in Beverly Forest as Y; so Y = L = 1. Define average number of newborn children per adult blue jay in Oakridge Riverside as N; n = Y = 1; so N = 4 * n = (4) * (1) = 4. Define average number of newborn children per adult blue jay in Pine Ridge as c; so c = N = 4. Define adult blue jay in Oakridge Riverside as K; t = c + x = 4 + x = x + 4; so K = t + G = x + 4 + x + 1 = 2*x + 5. Define average number of newborn children per adult owl in Pine Ridge as B; so B = K - G = (2*x + 5) - (x + 1) = x + 4. We know B = 7, so we have x + 4 = 7 and we solve it through the following steps: Simplifying the equation: x + 4 = 7. Move all terms to one side: x - 3 = 0. Isolate the term with x: 1*x = 3. Divide both sides by 1: x = 3 / 1. Solution: x = 3. Answer: 3.
+
+METADATA:
+- Operation: 20
+- Template: crazy_zootopia
+- Mode: forwardreverse
+- Length: 32k
+- Difficulty: 3

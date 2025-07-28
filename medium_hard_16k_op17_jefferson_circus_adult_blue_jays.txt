@@ -1,0 +1,19 @@
+MEDIUM-HARD Question (16k + op17)
+Expected Answer: 4
+
+SOURCE FILE: gsm-infinite/data/realistic/Igsm/16k/hard/17/igsm_op17_ip20_force_True_0.jsonl
+
+QUESTION: How many adult blue jay does Jefferson Circus have?
+
+PROBLEM:
+The number of adult beluga whale in Crystalbrook Stream equals the sum of the average number of newborn children per adult crow in Bundle Ranch and the number of adult crow in Bundle Ranch. The number of adult kokoe poison frog in Moonshadow Current equals the average number of newborn children per adult parrot in Bundle Ranch. The number of adult elephant in Luminara River equals the difference between the average number of newborn children per adult parrot in Bundle Ranch and the total number of newborn animal children in Jefferson Circus. The average number of newborn children per adult tasmanian devil in Moonshadow Current equals the average number of newborn children per adult crow in Jefferson Circus. The average number of newborn children per adult sperm whale in Crystalbrook Stream equals the difference between the number of adult crow in Hamilton Farm and the number of adult parrot in Hamilton Farm. The average number of newborn children per adult basilisk in Luminara River equals the sum of the average number of newborn children per adult crow in Jefferson Circus and the total number of newborn animal children in Twilight Stream. The number of adult ocelot in Moonshadow Current equals the sum of the average number of newborn children per adult blue jay in Jefferson Circus and the average number of newborn children per adult crow in Jefferson Circus. The average number of newborn children per adult crow in Jefferson Circus equals 2 plus the average number of newborn children per adult blue jay in Jefferson Circus. The number of adult coypu in Moonshadow Current equals the average number of newborn children per adult blue jay in Jefferson Circus. [continues with extremely complex mathematical relationships...]
+
+SOLUTION:
+The question is difficult, so we use equations to solve it. Define average number of newborn children per adult parrot in Bundle Ranch as G; so G = 4. Define average number of newborn children per adult crow in Hamilton Farm as A; R = G = 4; so A = 4 * R = (4) * (4) = 16. Define average number of newborn children per adult blue jay in Jefferson Circus as N; P = A = 16; so N = 4 * P = (4) * (16) = 64. Define adult parrot in Jefferson Circus as t; so t = G = 4. Define average number of newborn children per adult parrot in Jefferson Circus as O; so O = N = 64. Define adult crow in Jefferson Circus as z; so z = 2. Define average number of newborn children per adult crow in Jefferson Circus as w; e = N = 64; so w = 2 + e = 2 + 64 = 66. Define adult blue jay in Jefferson Circus as x; we don't know its value yet but will find it out later. Define total number of newborn animal children in Jefferson Circus as T; Y = z * w = (2) * (66) = 132; B = x * N = (x) * (64) = 64*x; D = t * O = (4) * (64) = 256; E = Y + B = 132 + 64*x = 64*x + 132; T = E + D = 64*x + 132 + 256 = 64*x + 388. We know T = 644, so we have 64*x + 388 = 644 and we solve it through the following steps: Simplifying the equation: 64*x + 388 = 644. Move all terms to one side: 64*x - 256 = 0. Isolate the term with x: 64*x = 256. Divide both sides by 64: x = 256 / 64. Solution: x = 4. Answer: 4.
+
+METADATA:
+- Operation: 17
+- Template: crazy_zootopia
+- Mode: forwardreverse
+- Length: 16k
+- Difficulty: 3

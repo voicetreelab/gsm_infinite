@@ -1,0 +1,19 @@
+HARD Question (16k + op18)
+Expected Answer: 4
+
+SOURCE FILE: gsm-infinite/data/realistic/Igsm/16k/hard/18/igsm_op18_ip20_force_True_0.jsonl
+
+QUESTION: How many adult blue jay does Cedar Valley have?
+
+PROBLEM:
+The number of adult parrot in Maple Creek equals the sum of the average number of newborn children per adult blue jay in Maple Creek and the average number of newborn children per adult parrot in Cedar Valley. The number of adult king crab in Lumina Hollow equals the number of adult parrot in Pine Ridge. The number of adult poison dart frog in Moonshadow Canopy equals the average number of newborn children per adult owl in Pine Ridge. The average number of newborn children per adult shiba inu in Crystalpine Wilds equals the average number of newborn children per adult blue jay in Cedar Valley. The average number of newborn children per adult wasp in Lumina Hollow equals the average number of newborn children per adult owl in Pine Ridge. The number of adult red panda in Glowthorn Thickets equals the difference between the average number of newborn children per adult owl in Pine Ridge and the total number of newborn animal children in Crystalpine Wilds. The number of adult fiddler crab in Lumina Hollow equals the difference between the average number of newborn children per adult parrot in Cedar Valley and the average number of newborn children per adult blue jay in Cedar Valley. The number of adult barnacle in Lumina Hollow equals the number of adult owl in Cedar Valley. [continues with extremely complex mathematical relationships...]
+
+SOLUTION:
+The question is difficult, so we use equations to solve it. Define adult blue jay in Cedar Valley as x; we don't know its value yet but will find it out later. Define average number of newborn children per adult parrot in Pine Ridge as w; W = x = x; so w = 3 + W = 3 + x = x + 3. Define average number of newborn children per adult parrot in Cedar Valley as C; J = w - x = (x + 3) - (x) = 3; so C = 4 * J = (4) * (3) = 12. Define average number of newborn children per adult parrot in Maple Creek as L; A = C = 12; so L = 3 + A = 3 + 12 = 15. Define adult blue jay in Maple Creek as d; e = L = 15; so d = 2 * e = (2) * (15) = 30. Define adult owl in Pine Ridge as D; so D = d + w = 30 + x + 3 = x + 33. Define average number of newborn children per adult blue jay in Maple Creek as g; so g = D = x + 33. Define average number of newborn children per adult blue jay in Cedar Valley as s; c = g = x + 33; so s = 4 * c = (4) * (x + 33) = 4*x + 132. Define average number of newborn children per adult owl in Pine Ridge as z; so z = s - D = (4*x + 132) - (x + 33) = 3*x + 99. Define adult owl in Cedar Valley as k; so k = z = 3*x + 99. We know k = 111, so we have 3*x + 99 = 111 and we solve it through the following steps: Simplifying the equation: 3*x + 99 = 111. Move all terms to one side: 3*x - 12 = 0. Isolate the term with x: 3*x = 12. Divide both sides by 3: x = 12 / 3. Solution: x = 4. Answer: 4.
+
+METADATA:
+- Operation: 18
+- Template: crazy_zootopia
+- Mode: forwardreverse
+- Length: 16k
+- Difficulty: 3

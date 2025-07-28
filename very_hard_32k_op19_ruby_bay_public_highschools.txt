@@ -1,0 +1,19 @@
+VERY HARD Question (32k + op19)
+Expected Answer: 3
+
+SOURCE FILE: gsm-infinite/data/realistic/Igsm/32k/hard/19/igsm_op19_ip20_force_True_0.jsonl
+
+QUESTION: How many public highschool does Ruby Bay have?
+
+PROBLEM:
+The average number of teachers per school of artificial intelligence in Drizzlewood equals the number of private middle school in Clearwater Bay. The number of myth and folklore conservatory in Overcast Hollow equals the average number of teachers per regional medical school in Clearwater Bay. The number of school of extreme sports in Breezeport equals the sum of the average number of teachers per regional medical school in Ruby Bay and the average number of teachers per private middle school in Ruby Bay. The number of school of time travel theory in Hailstorm City equals the difference between the number of public highschool in Clearwater Bay and the average number of teachers per regional medical school in Ruby Bay. The average number of teachers per school of extreme sports in Lightningdale equals the difference between the number of elementary school in Riverton City and the average number of teachers per private middle school in Ruby Bay. The number of self-guided studies institute in Thunderpoint equals the average number of teachers per public highschool in Riverton City. The average number of teachers per school of crisis negotiation in Breezeport equals the difference between the number of elementary school in Clearwater Bay and the number of private middle school in Ruby Bay. The number of educational psychology conservatory in Foggy Cove equals the difference between the average number of teachers per public highschool in Ruby Bay and the number of regional medical school in Ruby Bay. [continues with extremely complex mathematical relationships...]
+
+SOLUTION:
+The question is difficult, so we use equations to solve it. Define public highschool in Ruby Bay as x; we don't know its value yet but will find it out later. Define public highschool in Riverton City as g; Q = x = x; so g = 1 + Q = 1 + x = x + 1. Define regional medical school in Clearwater Bay as Y; so Y = g = x + 1. Define average number of teachers per elementary school in Clearwater Bay as P; y = Y = x + 1; so P = 3 + y = 3 + x + 1 = x + 4. Define elementary school in Clearwater Bay as C; so C = P = x + 4. Define average number of teachers per public highschool in Clearwater Bay as q; W = C = x + 4; so q = 4 * W = (4) * (x + 4) = 4*x + 16. Define elementary school in Riverton City as A; F = q = 4*x + 16; so A = 3 * F = (3) * (4*x + 16) = 12*x + 48. Define average number of teachers per regional medical school in Ruby Bay as p; m = A = 12*x + 48; so p = 4 + m = 4 + 12*x + 48 = 12*x + 52. Define average number of teachers per private middle school in Ruby Bay as l; so l = p = 12*x + 52. Define average number of teachers per regional medical school in Clearwater Bay as k; G = l = 12*x + 52; so k = 2 * G = (2) * (12*x + 52) = 24*x + 104. Define average number of teachers per public highschool in Riverton City as u; so u = k = 24*x + 104. Define average number of teachers per elementary school in Riverton City as s; so s = u - P = (24*x + 104) - (x + 4) = 23*x + 100. We know s = 169, so we have 23*x + 100 = 169 and we solve it through the following steps: Simplifying the equation: 23*x + 100 = 169. Move all terms to one side: 23*x - 69 = 0. Isolate the term with x: 23*x = 69. Divide both sides by 23: x = 69 / 23. Solution: x = 3. Answer: 3.
+
+METADATA:
+- Operation: 19
+- Template: teachers_in_school
+- Mode: forwardreverse
+- Length: 32k
+- Difficulty: 3
