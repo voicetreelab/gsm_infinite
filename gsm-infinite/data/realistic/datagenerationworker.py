@@ -20,7 +20,7 @@ generator = {
     "forwardreverse": drawAllEquan, 
 } 
 
-tokenizer = AutoTokenizer.from_pretrained("gpt2") 
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct")
 
 def work_function(
     op_set, 
